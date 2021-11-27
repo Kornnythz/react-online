@@ -7,10 +7,17 @@ const Footer = ({title , website , address , postcode, status}) => {
     return (
         <div>
             {/* <h1>Vatcharakon Kalapakdee {nickName}</h1> */}
-            <h3>{title} &copy; {new Date().getFullYear()}</h3>
-            <p>{website} {address} {postcode} {status.toString()}</p>
+            <h3 style={style.title}>{title} &copy; {new Date().getFullYear()}</h3>
+            <p style={{color:'green', fontSize: 18}}>{website} {address} {postcode} {status.toString()}</p>
+            <p style={style.title}>Vatcharakon</p>
         </div>
     )
+}
+
+const style = {
+    title :  {
+        color:'red'
+    }
 }
 
 Footer.propTypes = {

@@ -1,4 +1,6 @@
 import React from 'react'
+import Button from '../styles/button/Button'
+import Title from '../styles/title/Title'
 import Logo from './Logo'
 
 const Header = () => {
@@ -23,7 +25,7 @@ const Header = () => {
     return (
         <div>
             <h1>Hello {showMessage()}</h1>
-
+            <Title>Project React</Title>
             {
                 // long term
                 // isLogin === true ? (
@@ -42,7 +44,9 @@ const Header = () => {
                 //     </>
                 // )
             }
-            <button onClick={showMe}>Click Me</button>
+            <Button onClick={showMe}>Click Me</Button>
+
+            <Button keyword="correct" onClick={showMe}>Click Me</Button>
 
             <ul>
                 {
