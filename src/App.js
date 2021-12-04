@@ -1,19 +1,17 @@
-import './App.css';
+import React from 'react'
 import Footer from './components/Footer';
-import Header from './components/Header';
-import Logo from './components/Logo';
-import Menu from './components/Menu';
-import Sidebar from './components/Sidebar';
+import NavBar from './components/NavBar';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <div className="logo">
-      <Logo/>
-      <Header/>
-      <Footer title="Facebook" website="www.facebook.com" address="Bangkok" postcode={10210} status={true} />
-      <Sidebar/>
-      <Menu/>
-    </div>
+    <>
+        <NavBar/>
+
+        <HomePage/>
+
+        <Footer/>
+    </>
   );
 }
 
