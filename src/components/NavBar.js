@@ -1,14 +1,18 @@
 import React from "react";
 import { Navbar , Nav , NavDropdown , Form , FormControl , Button } from 'react-bootstrap';
+import { NavLink } from "react-router-dom";
 const NavBar = () => {
   return (
     <>
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+            <NavLink className="navbar-brand" exact to="/">React-Bootstrap</NavLink>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
+                <NavLink className="nav-link" activeClassName="active" exact to="/">Home</NavLink>
+                <NavLink className="nav-link" activeClassName="active" to="/about">About</NavLink>
+                {/* <Nav.Link href="#home">Home</Nav.Link> */}
                 <Nav.Link href="#link">Link</Nav.Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
