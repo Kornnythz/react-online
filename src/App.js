@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProductPage from './pages/ProductPage';
 import DetailPage from './pages/DetailPage';
+import ContactusPage from './pages/ContactusPage';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/detail">
             <DetailPage />
+          </Route>
+          <Route path="/contact">
+            <ContactusPage />
           </Route>
         </Switch>
 
