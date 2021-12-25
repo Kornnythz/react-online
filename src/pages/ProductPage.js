@@ -79,7 +79,7 @@ const ProductPage = () => {
                                                 <td><Badge variant="success">{p.view}</Badge></td>
                                                 {/* <td><img src={p.picture} width="100px"/></td> */}
                                                 <td><Image src={p.picture} width={60} rounded /></td>
-                                                <td><Link to="/detail"><Button variant="outline-info" >Click <FaMouse/></Button></Link></td>
+                                                <td><Link to={`/detail/${p.id}/title/${p.title}`}><Button variant="outline-info" >Click <FaMouse/></Button></Link></td>
                                             </tr>
                                         )
                                     })
