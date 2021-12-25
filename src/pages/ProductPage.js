@@ -66,7 +66,6 @@ const ProductPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                
                                 {
                                     product.map((p,index)=>{
                                         return(
