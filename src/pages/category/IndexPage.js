@@ -83,7 +83,20 @@ const IndexPage = () => {
                                                 <td>{c.name}</td>
                                                 <td>
                                                     <Link ><Button variant="outline-info" >Edit <BsPencilSquare/></Button></Link>
-                                                    <Link ><Button variant="outline-danger" className="ml-3">Delete <BsFillTrashFill/></Button></Link>
+                                                    <Link ><Button variant="outline-danger" onClick={
+                                                        async() => {
+                                                            const isConfirm = window.confirm('Confirm to delete >> ' + c.name + ' ? ')
+                                                            if(isConfirm === true){
+                                                                const apiURL = 'https://api.codingthailand.com/api/category/' + c.id
+                                                                const response = await axios.delete(apiURL).catch(error => {
+                                                                    console.error('There was an error!', error.message);
+                                                                });
+                                                                console.log(response.data)
+                                                                alert(response.data.message)
+                                                                history.go(0)
+                                                            }
+                                                        }
+                                                    } className="ml-3">Delete <BsFillTrashFill/></Button></Link>
                                                 </td>
                                             </tr>
                                         )

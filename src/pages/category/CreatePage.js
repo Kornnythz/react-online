@@ -24,7 +24,9 @@ const CreatePage = () => {
             {
                 name : data.name
             }
-            )
+            ).catch(error => {
+                console.error('There was an error!', error.message);
+            });
             alert(response.data.message)
             history.replace("/category")
        }
