@@ -8,6 +8,7 @@ import DetailPage from './pages/DetailPage';
 import ContactusPage from './pages/ContactusPage';
 import HospitalPage from './pages/hospital/HospitalPage';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import IndexPage from './pages/category/IndexPage';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/hospital">
             <HospitalPage />
+          </Route>
+          <Route path="/category">
+            <IndexPage />
           </Route>
         </Switch>
 
