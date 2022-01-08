@@ -9,6 +9,8 @@ import ContactusPage from './pages/ContactusPage';
 import HospitalPage from './pages/hospital/HospitalPage';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import IndexPage from './pages/category/IndexPage';
+import CreatePage from './pages/category/CreatePage';
+import EditPage from './pages/category/EditPage';
 
 function App() {
   return (
@@ -33,9 +35,16 @@ function App() {
           <Route path="/hospital">
             <HospitalPage />
           </Route>
-          <Route path="/category">
+          {/* <Route path="/category">
             <IndexPage />
-          </Route>
+          </Route> */}
+          <Route path="/category" render={ ({ match: {url} }) => (
+            <>
+              <Route path={`${url}/`} exact><IndexPage/></Route>
+              <Route path={`${url}/create`}><CreatePage/></Route>
+              <Route path={`${url}/edit/:id`}><EditPage/></Route>
+            </>
+          ) }></Route>
         </Switch>
 
         <Footer/>

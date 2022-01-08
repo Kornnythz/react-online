@@ -7,7 +7,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useHistory
 } from "react-router-dom";
 
 
@@ -15,6 +16,7 @@ import {
 
 const IndexPage = () => {
 
+    const history = useHistory()
     const [category , setCategory] = React.useState([])
     const [loading , setLoading] = React.useState(false)
     const [error , setError] = React.useState(null)
@@ -60,7 +62,10 @@ const IndexPage = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12 mt-4">
+
+                    <Button variant="success" className="mb-3" onClick={ () => {history.push('/category/create')} }>+ Add New Category</Button>
                         <h2>Category</h2>
+                        
                         <Table striped bordered hover>
                             <thead>
                                 <tr>
