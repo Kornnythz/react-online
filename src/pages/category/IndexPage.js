@@ -82,8 +82,8 @@ const IndexPage = () => {
                                                 <td>{c.id}</td>
                                                 <td>{c.name}</td>
                                                 <td>
-                                                    <Link ><Button variant="outline-info" >Edit <BsPencilSquare/></Button></Link>
-                                                    <Link ><Button variant="outline-danger" onClick={
+                                                    <Button variant="outline-info" onClick={ () => {history.push('/category/edit/'+ c.id)} }>Edit <BsPencilSquare/></Button>
+                                                    <Button variant="outline-danger" onClick={
                                                         async() => {
                                                             const isConfirm = window.confirm('Confirm to delete >> ' + c.name + ' ? ')
                                                             if(isConfirm === true){
@@ -96,7 +96,7 @@ const IndexPage = () => {
                                                                 history.go(0)
                                                             }
                                                         }
-                                                    } className="ml-3">Delete <BsFillTrashFill/></Button></Link>
+                                                    } className="ml-3">Delete <BsFillTrashFill/></Button>
                                                 </td>
                                             </tr>
                                         )

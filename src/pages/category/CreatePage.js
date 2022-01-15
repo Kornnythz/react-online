@@ -35,7 +35,7 @@ const CreatePage = () => {
       <div className="row">
         <div className="col-md-12 mt-4">
           <h2>Add New Category</h2>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form className="mb-3" onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="name">
               <Form.Label>Category News</Form.Label>
               <Form.Control type="text" name="name" ref={register}  className={`form-control ${errors.name ? 'is-invalid' : ''}`} />
