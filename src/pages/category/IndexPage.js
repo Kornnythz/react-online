@@ -25,7 +25,7 @@ const IndexPage = () => {
         try {
             setLoading(true)
             const response = await axios.get(`https://api.codingthailand.com/api/category`)
-            console.log(response.data)
+            //console.log(response.data)
             setCategory(response.data)
         } catch (error) {
     
@@ -91,7 +91,7 @@ const IndexPage = () => {
                                                                 const response = await axios.delete(apiURL).catch(error => {
                                                                     console.error('There was an error!', error.message);
                                                                 });
-                                                                console.log(response.data)
+                                                                //console.log(response.data)
                                                                 alert(response.data.message)
                                                                 history.go(0)
                                                             }
