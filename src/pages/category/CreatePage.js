@@ -1,5 +1,5 @@
 import React from "react";
-import { Form , Image , Badge , Spinner , Button  } from 'react-bootstrap'
+import { Form , Button  } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -7,6 +7,7 @@ import axios from "axios";
 import {
     useHistory
   } from "react-router-dom";
+import { useToasts } from 'react-toast-notifications';
 
 const schema = yup.object({
     name: yup.string().required('Category news cannot be null'),
@@ -17,6 +18,8 @@ const CreatePage = () => {
      const { register, handleSubmit, formState:{ errors } } = useForm({
          resolver: yupResolver(schema)
        });
+
+       const { addToast } = useToasts()
       
        const onSubmit = async(data) => {
            const apiURL = 'https://api.codingthailand.com/api/category'
@@ -27,7 +30,8 @@ const CreatePage = () => {
             ).catch(error => {
                 console.error('There was an error!', error.message);
             });
-            alert(response.data.message)
+            //alert(response.data.message)
+            addToast(response.data.message , {appearance: 'success', autoDismiss: true })
             history.replace("/category")
        }
   return (

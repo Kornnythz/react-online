@@ -1,13 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { Card, CardDeck, Spinner, Button } from "react-bootstrap";
-import { useParams , useHistory , Link } from "react-router-dom";
+import { useParams  , Link } from "react-router-dom";
 
 
 const DetailPage = () => {
 
   const { id, title } = useParams();
-  const history = useHistory();
 
   const [detail, setDetail] = React.useState([]);
   const [loading, setLoading] = React.useState(false);

@@ -1,16 +1,11 @@
 import React from 'react'
 import axios from 'axios'
-import { Table , Image , Badge , Spinner , Button  } from 'react-bootstrap'
-import Pagination from "react-js-pagination";
+import { Table  , Spinner , Button  } from 'react-bootstrap'
 import { BsFillTrashFill, BsPencilSquare } from "react-icons/bs";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   useHistory
 } from "react-router-dom";
-
+import { useToasts } from 'react-toast-notifications';
 
 
 
@@ -20,7 +15,7 @@ const IndexPage = () => {
     const [category , setCategory] = React.useState([])
     const [loading , setLoading] = React.useState(false)
     const [error , setError] = React.useState(null)
-
+    const { addToast } = useToasts()
     const getData = async() => {
         try {
             setLoading(true)
@@ -92,8 +87,12 @@ const IndexPage = () => {
                                                                     console.error('There was an error!', error.message);
                                                                 });
                                                                 //console.log(response.data)
-                                                                alert(response.data.message)
-                                                                history.go(0)
+                                                                addToast(response.data.message , {appearance: 'success', autoDismiss: true })
+                                                                //alert(response.data.message)
+                                                                //history.replace('/create')
+                                                                history.replace('/category')
+                                                                //history.push('/category')
+                                                                //history.go(0)
                                                             }
                                                         }
                                                     } className="ml-3">Delete <BsFillTrashFill/></Button>

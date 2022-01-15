@@ -1,5 +1,5 @@
 import React from "react";
-import { Form , Image , Badge , Spinner , Button  } from 'react-bootstrap'
+import { Form , Button , Spinner  } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -28,6 +28,7 @@ const schema = yup.object({
     
       const [loading , setLoading] = React.useState(false)
       const [error , setError] = React.useState(null)
+      const [valueText , setValueText] = React.useState("")
     
       const onSubmit = async (data) => {
         try {
@@ -47,18 +48,37 @@ const schema = yup.object({
         try {
             setLoading(true)
             const response = await axios.get(`https://api.codingthailand.com/api/category/` + id)
-            console.log(response.data)
+            //console.log(response.data)
+            setValueText(response.data.name)
             setValue('name',response.data.name)
         } catch (error) {
             setError(error)
         } finally {
             setLoading(false)
+            //console.log(response.data)
         }
     }
         React.useEffect(() =>{
             getData(id)
         },[id])
     
+
+        if(loading === true){
+          return (
+              <div className="text-center mt-5">
+                  <Spinner animation="border" variant="primary" />
+              </div>
+          )
+        }
+
+    if(error){
+        return(
+             <div className="text-center mt-5 text-danger">
+                <h4>Error from API, Please try again</h4>
+                <p>{error.response.data.message}</p>
+            </div>
+        )
+    }
     
       return (
         <div className="container">
@@ -69,6 +89,7 @@ const schema = yup.object({
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Category News</Form.Label>
                   <Form.Control
+                    //defaultValue={valueText}
                     type="text"
                     name="name"
                     ref={register}

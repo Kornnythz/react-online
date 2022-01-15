@@ -3,9 +3,6 @@ import axios from 'axios'
 import { Table , Image , Badge , Spinner , Button  } from 'react-bootstrap'
 import { FaMouse } from "react-icons/fa";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link
 } from "react-router-dom";
 const ProductPage = () => {
