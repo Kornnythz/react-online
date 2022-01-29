@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar , Nav , NavDropdown , Form , FormControl , Button } from 'react-bootstrap';
 import { NavLink , useHistory } from "react-router-dom";
 const NavBar = () => {
 
   const history = useHistory();
+  const [profile, setProfile] = useState(null)
+
+  const getProfile = () => {
+    const profileValue = JSON.parse(localStorage.getItem('profile'))
+    if(profileValue){
+      setProfile(profileValue)
+    }
+  }
+
+  React.useEffect(()=>{
+      getProfile()
+  },[])
+
   return (
     <>
         <Navbar bg="light" expand="lg">
@@ -29,10 +42,20 @@ const NavBar = () => {
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-success">Search</Button>
             </Form> */}
-            <Nav>
-              <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
-              <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
-            </Nav>
+
+            {
+              profile ? (
+                <span className="nav-text">Welcome {profile.name} <button className="btn btn-danger ml-2">Logout</button></span>
+              ) : (
+                  <>
+                    <Nav>
+                      <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
+                      <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
+                    </Nav>
+                  </>
+              )
+            }
+
             </Navbar.Collapse>
         </Navbar>
     </>
