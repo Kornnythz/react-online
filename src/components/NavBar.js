@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Navbar , Nav , NavDropdown , Form , FormControl , Button } from 'react-bootstrap';
 import { NavLink , useHistory } from "react-router-dom";
+import { useToasts } from 'react-toast-notifications';
+
+
 const NavBar = () => {
 
+  const { addToast } = useToasts()
   const history = useHistory();
   const [profile, setProfile] = useState(null)
 
@@ -16,6 +20,14 @@ const NavBar = () => {
   React.useEffect(()=>{
       getProfile()
   },[])
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('profile')
+    addToast('ลงชื่อออกสำเร็จ' , {appearance: 'success', autoDismiss: true})
+    history.replace('/')
+    history.go(0)
+  }
 
   return (
     <>
@@ -37,6 +49,7 @@ const NavBar = () => {
                 <NavDropdown.Item onClick={()=>{ history.replace("/category") }}>News Category</NavDropdown.Item>
                 </NavDropdown>
                 <NavLink className="nav-link" activeClassName="active" to="/upload">Upload</NavLink>
+                <NavLink className="nav-link" activeClassName="active" to="/member">Member</NavLink>
             </Nav>
             {/* <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -45,7 +58,7 @@ const NavBar = () => {
 
             {
               profile ? (
-                <span className="nav-text">Welcome {profile.name} <button className="btn btn-danger ml-2">Logout</button></span>
+                <span className="nav-text">Welcome {profile.name} <button onClick={logout} className="btn btn-danger ml-2">Logout</button></span>
               ) : (
                   <>
                     <Nav>
