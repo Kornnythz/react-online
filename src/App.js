@@ -13,6 +13,8 @@ import CreatePage from './pages/category/CreatePage';
 import EditPage from './pages/category/EditPage';
 import UploadPage from './pages/UploadPage';
 import { ToastProvider } from 'react-toast-notifications'
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -50,6 +52,12 @@ function App() {
             ) }></Route>
             <Route path="/upload">
               <UploadPage />
+            </Route>
+            <Route path="/register">
+              <RegisterPage />
+            </Route>
+            <Route path="/login">
+              <LoginPage />
             </Route>
           </Switch>
 

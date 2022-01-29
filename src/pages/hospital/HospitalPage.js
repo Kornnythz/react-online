@@ -19,12 +19,12 @@ const HospitalPage = () => {
         try {
             setLoading(true)
             const response = await axios.get(`https://api.codingthailand.com/api/hospital2?page=${page}&page_size=${pageSize}`)
-            console.log(response.data.data)
+            // console.log(response.data.data)
             setHospital(response.data.data)
             setTotal(response.data.meta.pagination.total)
-            console.log(response.data.meta.pagination.total)
+            // console.log(response.data.meta.pagination.total)
         } catch (error) {
-            console.error(error.response.data.status_code)
+            // console.error(error.response.data.status_code)
             setError(error)
         } finally {
             setLoading(false)
@@ -32,7 +32,7 @@ const HospitalPage = () => {
     }
 
     React.useEffect(() => {
-            getData()
+            getData(page)
     }, [page])
 
     if(loading === true){
@@ -90,17 +90,19 @@ const HospitalPage = () => {
 
                             </tbody>
                         </Table>
-                        <Pagination
-                        activePage={page}
-                        itemsCountPerPage={pageSize}
-                        totalItemsCount={total}
-                        pageRangeDisplayed={5}
-                        onChange={handlePageChange}
-                        itemClass="page-item"
-                        linkClass="page-link"
-                        prevPageText="ก่อนหน้า"
-                        nextPageText="ถัดไป"
-                        />
+                        <div style={{display: 'flex', justifyContent:'center' , alignItems:'center' , width:'100%'}}>
+                            <Pagination
+                            activePage={page}
+                            itemsCountPerPage={pageSize}
+                            totalItemsCount={total}
+                            pageRangeDisplayed={10}
+                            onChange={handlePageChange}
+                            itemClass="page-item"
+                            linkClass="page-link"
+                            prevPageText="Previous"
+                            nextPageText="Next"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
