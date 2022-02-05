@@ -8,7 +8,7 @@ import {
     useHistory
   } from "react-router-dom";
 import { useToasts } from 'react-toast-notifications';
-
+import { UserStoreContext } from "../context/UserContext";
 const schema = yup.object({
     email: yup.string().required('อีเมลห้ามว่าง').email('อีเมลฟอร์แมตไม่ถูกต้อง'),
     password: yup.string().required('พาสเวิร์ดห้ามว่าง').min(3,'พาสเวิร์ดห้ามต่ำกว่า 3 ตัวอักษร')
@@ -21,6 +21,7 @@ const LoginPage = () => {
      });
 
        const { addToast } = useToasts()
+       const userStore = React.useContext(UserStoreContext)
       
        const onSubmit = async(data) => {
            try{
@@ -44,8 +45,11 @@ const LoginPage = () => {
                 localStorage.setItem('profile', JSON.stringify(responseProfile.data.data.user))
                 //alert(response.data.message)
                 addToast('ล็อกอินสำเร็จ' , {appearance: 'success', autoDismiss: true })
+
+                const profileValue = JSON.parse(localStorage.getItem('profile'))
+                userStore.updateProfile(profileValue)
                 history.replace("/")
-                history.go(0)
+                // history.go(0)
             }catch(error){
                 addToast(error.response.data.message , {appearance: 'error', autoDismiss: true})
             }

@@ -22,6 +22,7 @@ const HospitalPage = () => {
             // console.log(response.data.data)
             setHospital(response.data.data)
             setTotal(response.data.meta.pagination.total)
+            
             // console.log(response.data.meta.pagination.total)
         } catch (error) {
             // console.error(error.response.data.status_code)

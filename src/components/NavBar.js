@@ -2,24 +2,25 @@ import React, { useState } from "react";
 import { Navbar , Nav , NavDropdown , Form , FormControl , Button } from 'react-bootstrap';
 import { NavLink , useHistory } from "react-router-dom";
 import { useToasts } from 'react-toast-notifications';
-
+import { UserStoreContext } from "../context/UserContext";
 
 const NavBar = () => {
 
   const { addToast } = useToasts()
   const history = useHistory();
-  const [profile, setProfile] = useState(null)
+  // const [profile, setProfile] = useState(null)
+  const userStore = React.useContext(UserStoreContext)
 
-  const getProfile = () => {
-    const profileValue = JSON.parse(localStorage.getItem('profile'))
-    if(profileValue){
-      setProfile(profileValue)
-    }
-  }
+  // const getProfile = () => {
+  //   const profileValue = JSON.parse(localStorage.getItem('profile'))
+  //   if(profileValue){
+  //     setProfile(profileValue)
+  //   }
+  // }
 
-  React.useEffect(()=>{
-      getProfile()
-  },[])
+  // React.useEffect(()=>{
+  //     getProfile()
+  // },[])
 
   const logout = () => {
     localStorage.removeItem('token')
@@ -57,8 +58,8 @@ const NavBar = () => {
             </Form> */}
 
             {
-              profile ? (
-                <span className="nav-text">Welcome {profile.name} <button onClick={logout} className="btn btn-danger ml-2">Logout</button></span>
+              userStore.profile ? (
+                <span className="nav-text">Welcome {userStore.profile.name} <button onClick={logout} className="btn btn-danger ml-2">Logout</button></span>
               ) : (
                   <>
                     <Nav>
