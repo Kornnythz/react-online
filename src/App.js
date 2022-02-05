@@ -19,8 +19,17 @@ import MemberPage from './pages/MemberPage';
 import PrivateRoute from './guard/auth';
 import UserStoreProvider from './context/UserContext';
 
+
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './redux/reducers/index';
+
+const store = createStore(rootReducer)
+
 function App() {
+
   return (
+    <Provider store={store}>
     <UserStoreProvider>
     <ToastProvider placement="top-center">
       <Router>
@@ -72,6 +81,7 @@ function App() {
       </Router>
     </ToastProvider>
     </UserStoreProvider>
+    </Provider>
   );
 }
 

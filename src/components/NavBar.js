@@ -3,6 +3,7 @@ import { Navbar , Nav , NavDropdown , Form , FormControl , Button } from 'react-
 import { NavLink , useHistory } from "react-router-dom";
 import { useToasts } from 'react-toast-notifications';
 import { UserStoreContext } from "../context/UserContext";
+import { useSelector } from 'react-redux'
 
 const NavBar = () => {
 
@@ -10,7 +11,7 @@ const NavBar = () => {
   const history = useHistory();
   // const [profile, setProfile] = useState(null)
   const userStore = React.useContext(UserStoreContext)
-
+  const profileRedux = useSelector((state) => state.authReducer.profile)
   const getProfile = () => {
     const profileValue = JSON.parse(localStorage.getItem('profile'))
     if(profileValue){
@@ -52,7 +53,9 @@ const NavBar = () => {
                 </NavDropdown>
                 <NavLink className="nav-link" activeClassName="active" to="/upload">Upload</NavLink>
                 <NavLink className="nav-link" activeClassName="active" to="/member">Member</NavLink>
+                {profileRedux.name}
             </Nav>
+            
             {/* <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-success">Search</Button>
