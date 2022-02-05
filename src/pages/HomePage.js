@@ -1,14 +1,16 @@
 import React from 'react'
 import { FcReading } from "react-icons/fc";
+import { UserStoreContext } from '../context/UserContext';
 
 const HomePage = () => {
+    const userStore = React.useContext(UserStoreContext)
     return (
         <>
             <main role="main">
                 {/* Main jumbotron for a primary marketing message or call to action */}
                 <div className="jumbotron">
                     <div className="container">
-                    <h1 className="display-3">Hello, world! <FcReading/></h1>
+                    <h1 className="display-3">Hello, world! { userStore.profile ? ( <p>{userStore.profile.name}</p> ) : ( <></> ) } <FcReading/></h1>
                     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
                     <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
                     </div>
