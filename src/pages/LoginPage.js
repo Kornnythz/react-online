@@ -9,6 +9,9 @@ import {
   } from "react-router-dom";
 import { useToasts } from 'react-toast-notifications';
 import { UserStoreContext } from "../context/UserContext";
+import { useDispatch } from 'react-redux'
+import { updateProfile } from './../redux/actions/authAction'
+
 const schema = yup.object({
     email: yup.string().required('อีเมลห้ามว่าง').email('อีเมลฟอร์แมตไม่ถูกต้อง'),
     password: yup.string().required('พาสเวิร์ดห้ามว่าง').min(3,'พาสเวิร์ดห้ามต่ำกว่า 3 ตัวอักษร')
@@ -22,6 +25,8 @@ const LoginPage = () => {
 
        const { addToast } = useToasts()
        const userStore = React.useContext(UserStoreContext)
+
+       const dispatch = useDispatch()
       
        const onSubmit = async(data) => {
            try{
@@ -47,7 +52,8 @@ const LoginPage = () => {
                 addToast('ล็อกอินสำเร็จ' , {appearance: 'success', autoDismiss: true })
 
                 const profileValue = JSON.parse(localStorage.getItem('profile'))
-                userStore.updateProfile(profileValue)
+                // userStore.updateProfile(profileValue)
+                dispatch(updateProfile(profileValue))
                 history.replace("/")
                 // history.go(0)
             }catch(error){

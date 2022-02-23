@@ -3,20 +3,25 @@ import { Navbar , Nav , NavDropdown , Form , FormControl , Button } from 'react-
 import { NavLink , useHistory } from "react-router-dom";
 import { useToasts } from 'react-toast-notifications';
 import { UserStoreContext } from "../context/UserContext";
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch } from 'react-redux'
+import { updateProfile } from "../redux/actions/authAction";
 
 const NavBar = () => {
 
   const { addToast } = useToasts()
   const history = useHistory();
   // const [profile, setProfile] = useState(null)
-  const userStore = React.useContext(UserStoreContext)
+  // const userStore = React.useContext(UserStoreContext)
   const profileRedux = useSelector((state) => state.authReducer.profile)
+  const dispatch = useDispatch()
+
+
   const getProfile = () => {
     const profileValue = JSON.parse(localStorage.getItem('profile'))
     if(profileValue){
       // setProfile(profileValue)
-      userStore.updateProfile(profileValue)
+      // userStore.updateProfile(profileValue)
+      dispatch(updateProfile(profileValue))
     }
   }
 
@@ -53,7 +58,7 @@ const NavBar = () => {
                 </NavDropdown>
                 <NavLink className="nav-link" activeClassName="active" to="/upload">Upload</NavLink>
                 <NavLink className="nav-link" activeClassName="active" to="/member">Member</NavLink>
-                {profileRedux.name}
+                
             </Nav>
             
             {/* <Form inline>
@@ -62,8 +67,8 @@ const NavBar = () => {
             </Form> */}
 
             {
-              userStore.profile ? (
-                <span className="nav-text">Welcome {userStore.profile.name} <button onClick={logout} className="btn btn-danger ml-2">Logout</button></span>
+              profileRedux ? (
+                <span className="nav-text">Welcome {profileRedux.name} <button onClick={logout} className="btn btn-danger ml-2">Logout</button></span>
               ) : (
                   <>
                     <Nav>
