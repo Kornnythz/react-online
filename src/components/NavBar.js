@@ -13,6 +13,7 @@ const NavBar = () => {
   // const [profile, setProfile] = useState(null)
   // const userStore = React.useContext(UserStoreContext)
   const profileRedux = useSelector((state) => state.authReducer.profile)
+  const total = useSelector((state) => state.cartReducer.total)
   const dispatch = useDispatch()
 
 
@@ -47,6 +48,7 @@ const NavBar = () => {
             <Nav className="mr-auto">
                 <NavLink className="nav-link" activeClassName="active" exact to="/">Home</NavLink>
                 <NavLink className="nav-link" activeClassName="active" to="/product">Product</NavLink>
+                <NavLink className="nav-link" activeClassName="active" to="/cart">Cart {total} Item(s)</NavLink>
                 <NavLink className="nav-link" activeClassName="active" to="/contact">Contact Us</NavLink>
                 <NavLink className="nav-link" activeClassName="active" to="/about">About</NavLink>
                 {/* <Nav.Link href="#home">Home</Nav.Link> */}

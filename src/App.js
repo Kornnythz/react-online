@@ -23,6 +23,7 @@ import UserStoreProvider from './context/UserContext';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from './redux/reducers/index';
+import CartPage from './pages/CartPage';
 
 const store = createStore(rootReducer)
 
@@ -52,6 +53,9 @@ function App() {
             </Route>
             <Route path="/hospital">
               <HospitalPage />
+            </Route>
+            <Route path="/cart">
+              <CartPage />
             </Route>
             {/* <Route path="/category">
               <IndexPage />

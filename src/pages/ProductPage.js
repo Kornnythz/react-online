@@ -5,12 +5,18 @@ import { FaMouse } from "react-icons/fa";
 import {
   Link
 } from "react-router-dom";
+import { addToCart } from '../redux/actions/cartAction';
+import { useSelector , useDispatch } from 'react-redux'
+
 const ProductPage = () => {
 
     const [product , setProduct] = React.useState([])
     const [loading , setLoading] = React.useState(false)
     const [error , setError] = React.useState(null)
 
+    const dispatch = useDispatch()
+    const cart = useSelector((state) => state.cartReducer.cart)
+    const total = useSelector((state) => state.cartReducer.total)
     const getData = async() => {
         try {
             setLoading(true)
@@ -45,6 +51,18 @@ const ProductPage = () => {
             </div>
         )
     }
+
+    const addCart = (p) => {
+        const product = {
+            id: p.id,
+            name: p.title,
+            price: p.view,
+            qty: 1
+        }
+
+        dispatch(addToCart(product, cart))
+    }
+
         return (
             <div className="container">
                 <div className="row">
@@ -75,7 +93,10 @@ const ProductPage = () => {
                                                 <td><Badge variant="success">{p.view}</Badge></td>
                                                 {/* <td><img src={p.picture} width="100px"/></td> */}
                                                 <td><Image src={p.picture} width={60} rounded /></td>
-                                                <td><Link to={`/detail/${p.id}/title/${p.title}`}><Button variant="outline-info" >Click <FaMouse/></Button></Link></td>
+                                                <td>
+                                                    <Link to={`/detail/${p.id}/title/${p.title}`}><Button variant="outline-info" >Click <FaMouse/></Button></Link>
+                                                    <Button variant="outline-warning" className='ml-2' onClick={() => addCart(p)}>Buy</Button>
+                                                </td>
                                             </tr>
                                         )
                                     })
